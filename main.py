@@ -40,7 +40,7 @@ def sum(player):
 def avg(x):
     all_games = []
     all_games_score = 0
-    for i in range(1000):
+    for i in range(1000000):
         all_games.append(sum(player(x)))
 
     for game_score in all_games:
@@ -54,4 +54,4 @@ def rolls(i):
         print(f"Rolls:{i}, average score: {avg(i)}")
 
 
-rolls(10)
+rolls(8)

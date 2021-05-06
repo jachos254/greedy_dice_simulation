@@ -1,9 +1,6 @@
-from random import *
+from main import roll_d6, sum
 
-# rolling a d6 dice
-def roll_d6():
-    num = randint(1,6)
-    return num
+
 
 def player(x):
     all_turns = []
@@ -27,4 +24,26 @@ def player(x):
             all_turns.append(score)
     return all_turns
 
-print(player(42))
+def avg(x):
+    all_games = []
+    all_games_score = 0
+    for i in range(10000):
+        all_games.append(sum(player(x)))
+
+    for game_score in all_games:
+        all_games_score += game_score
+        avg = all_games_score / len(all_games)
+    return avg
+
+
+# adding range of aimed scores
+def scores(i):
+    for i in range(1,i+1):
+        print(f"Aimed score/turn: {i}, average score: {avg(i)}")
+
+# adding stricter range of aimed scores
+def scores_strict(x, y):
+    for i in range(x,y+1):
+        print(f"Aimed score/turn: {i}, average score: {avg(i)}")
+
+scores_strict(17, 23)
