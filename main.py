@@ -51,7 +51,7 @@ def avg(x):
 # adding range of planned rolls
 def rolls(i):
     for i in range(1,i+1):
-        print(avg(i))
+        print(f"Rolls:{i}, average score: {avg(i)}")
 
-print(avg(4))
-rolls(4)
+
+rolls(10)
