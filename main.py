@@ -54,4 +54,3 @@ def rolls(i):
         print(f"Rolls:{i}, average score: {avg(i)}")
 
 
-rolls(8)

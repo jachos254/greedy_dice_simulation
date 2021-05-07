@@ -2,7 +2,7 @@ from main import roll_d6, sum
 
 
 
-def player(x):
+def player(x, y):
     all_turns = []
     for i in range(10):
         turn = []
@@ -13,7 +13,7 @@ def player(x):
             if 1 in turn:
                 break
 
-            if sum(turn) >= x:
+            if sum(turn) >= x or len(turn) == y:
                 break
 
         if 1 in turn:
@@ -24,11 +24,11 @@ def player(x):
             all_turns.append(score)
     return all_turns
 
-def avg(x):
+def avg(x, y):
     all_games = []
     all_games_score = 0
-    for i in range(10000):
-        all_games.append(sum(player(x)))
+    for i in range(1000000):
+        all_games.append(sum(player(x, y)))
 
     for game_score in all_games:
         all_games_score += game_score
@@ -36,16 +36,13 @@ def avg(x):
     return avg
 
 
-# adding range of aimed scores
-def scores(i):
-    for i in range(1,i+1):
-        print(f"Aimed score/turn: {i}, average score: {avg(i)}")
+
 
 # adding stricter range of aimed scores
-def scores_strict(x, y):
+def scores_strict(x, y, z, q):
     for i in range(x,y+1):
-        print(f"Aimed score/turn: {i}, average score: {avg(i)}")
+        for j in range(z,q+1):
+            print(f"Aimed score/turn {i}, no more than {j} rolls, average score: {avg(i, j)}")
 
-print(player(17))
-print(player(20))
-print(player(21))
+
+scores_strict(21, 21, 8, 9)
