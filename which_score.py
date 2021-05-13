@@ -45,7 +45,3 @@ def scores(i):
 def scores_strict(x, y):
     for i in range(x,y+1):
         print(f"Aimed score/turn: {i}, average score: {avg(i)}")
-
-print(player(17))
-print(player(20))
-print(player(21))
