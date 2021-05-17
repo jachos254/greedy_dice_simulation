@@ -45,3 +45,6 @@ def scores_strict(x, y, z, q):
             print(f"Aimed score/turn {i}, no more than {j} rolls, average score: {avg(i, j)}")
 
 
+scores_strict(21,21,8,8)
+scores_strict(21,21,9,9)
+scores_strict(21,21,9,9)
