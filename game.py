@@ -16,6 +16,7 @@ comp_holdings = 0
 num_turns = 10
 
 def check_finish():
+    trns_left_label.config(text=num_turns)
     if num_turns == 0:
         if comp_holdings > holdings:
             print('ai won')
@@ -107,9 +108,13 @@ def comp_ai_holder():
     check_finish()
 
 curr_roll = Label(text='Rolled').grid(row=0, column=2)
-
-turn = Label(text='turn').grid(row=0, column=3)
+turn = Label(text='Turn').grid(row=0, column=3)
 hold = Label(text='Holdings').grid(row=0, column=4)
+turns_left = Label(text='Turns Left').grid(row=0, column=5)
+
+trns_left_label = Label()
+trns_left_label.grid(row=1, column=5)
+trns_left_label.config(text=num_turns)
 
 comp = Label(text='AI').grid(row=1, column=1)
 comp_roll = Label()
