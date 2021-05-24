@@ -8,19 +8,19 @@ window.geometry('420x420')
 # window.resizable(False, False)
 
 
-# def computer():
-#     roll = roll_d6()
-#     label.config(text=roll)
-#
-# def player():
-#     roll = roll_d6()
-#     label_2.config(text=roll)
-
 
 player_score = 0
 holdings = 0
 comp_score = 0
 comp_holdings = 0
+num_turns = 10
+
+def check_finish():
+    if num_turns == 0:
+        if comp_holdings > holdings:
+            print('ai won')
+        else:
+            print('you won')
 
 def roll():
     global player_score
@@ -39,18 +39,7 @@ def roll():
     player_score += roll
     player_turn.config(text=player_score)
 
-# #setting 0s between actions
-# def reset_player():
-#     player_score = 0
-#
-#     player_roll.config(text=player_score)
-#
-#
-# #setting 0s between actions
-# def reset_comp():
-#     comp_score = 0
-#
-#     comp_roll.config(text=comp_score)
+
 
 
 def holder():
@@ -70,65 +59,52 @@ def comp_ai_roll():
 
 def comp_ai_turn():
     global comp_score
-
-    roll = comp_ai_roll()
-    comp_roll.config(text=roll)
-    window.update()
-    time.sleep(1)
-    if roll == 1:
-        comp_turn.config(text=0)
-        time.sleep(1)
-        comp_roll.config(text=0)
-        return
-    else:
+    global num_turns
+    for i in range(5):
+        roll = comp_ai_roll()
         comp_roll.config(text=roll)
-        comp_score += roll
-        comp_turn.config(text=comp_score)
-
-
-
-    roll = comp_ai_roll()
-    comp_roll.config(text=roll)
-    window.update()
-    time.sleep(1)
-    if roll == 1:
-        comp_turn.config(text=0)
+        window.update()
         time.sleep(1)
-        comp_roll.config(text=0)
-        return
-    else:
-        comp_roll.config(text=roll)
-        comp_score += roll
-        comp_turn.config(text=comp_score)
+        if roll == 1:
+            comp_score = 0
+            comp_turn.config(text=0)
+
+            time.sleep(1)
+            window.update()
+            comp_roll.config(text=0)
+            num_turns -= 1
+            check_finish()
+            return
+        else:
+            # comp_roll.config(text=roll)
+            comp_score += roll
 
 
 
-    roll = comp_ai_roll()
-    comp_roll.config(text=roll)
-    window.update()
-    time.sleep(1)
-    if roll == 1:
+            comp_turn.config(text=comp_score)
+            window.update()
+            time.sleep(1)
+            if comp_score >= 21:
 
-        comp_turn.config(text=0)
-        time.sleep(1)
-        comp_roll.config(text=0)
-        return
-    else:
-        comp_roll.config(text=roll)
-        comp_score += roll
-        comp_turn.config(text=comp_score)
+                comp_ai_holder()
+
+                return
 
     comp_ai_holder()
 
 def comp_ai_holder():
     global comp_holdings
     global comp_score
+    global num_turns
     comp_holdings += comp_score
     comp_hold.config(text=comp_holdings)
     comp_score = 0
     comp_turn.config(text=comp_score)
 
     comp_roll.config(text=0)
+    window.update()
+    num_turns -= 1
+    check_finish()
 
 curr_roll = Label(text='Rolled').grid(row=0, column=2)
 
