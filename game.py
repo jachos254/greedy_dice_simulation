@@ -15,6 +15,32 @@ comp_score = 0
 comp_holdings = 0
 num_turns = 10
 
+def reset():
+    global player_score
+    global holdings
+    global comp_score
+    global comp_holdings
+    global num_turns
+
+    player_score = 0
+    holdings = 0
+    comp_score = 0
+    comp_holdings = 0
+    num_turns = 10
+    window.update()
+
+    trns_left_label.config(text=num_turns)
+
+    comp_roll.config(text=0)
+    comp_turn.config(text=0)
+    comp_hold.config(text=0)
+
+    player_roll.config(text=0)
+    player_turn.config(text=0)
+    player_hold.config(text=0)
+
+
+
 def check_finish():
     trns_left_label.config(text=num_turns)
     if num_turns == 0:
@@ -142,7 +168,8 @@ play_button = Button(text='Roll', bg='green', command=roll)
 play_button.grid(row=3, column=2)
 hold_button = Button(text='Hold', bg='red', command=holder)
 hold_button.grid(row=3, column=4)
-
+reset_button = Button(text='Reset', command=reset)
+reset_button.grid(row=4, column=6)
 
 window.mainloop()
 
