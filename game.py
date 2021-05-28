@@ -39,6 +39,8 @@ def reset():
     player_turn.config(text=0)
     player_hold.config(text=0)
 
+    hold_button['state'] = 'normal'
+    play_button['state'] = 'normal'
 
 
 def check_finish():
@@ -50,11 +52,14 @@ def check_finish():
             print('you won')
 
 def roll():
+    play_button['state'] = 'disabled'
+    hold_button['state'] = 'normal'
     global player_score
     comp_roll.config(text=0)
     roll = roll_d6()
     player_roll.config(text=roll)
     if roll == 1:
+        hold_button['state'] = 'disabled'
         player_score = 0
         player_turn.config(text=player_score)
 
@@ -66,10 +71,11 @@ def roll():
     player_score += roll
     player_turn.config(text=player_score)
 
-
+    play_button['state'] = 'normal'
 
 
 def holder():
+    hold_button['state'] = 'disabled'
     global holdings
     global player_score
     player_roll.config(text=0)
@@ -79,12 +85,14 @@ def holder():
     player_turn.config(text=player_score)
     comp_ai_turn()
 
+
 def comp_ai_roll():
     roll = roll_d6()
     comp_roll.config(text=roll)
     return roll
 
 def comp_ai_turn():
+    reset_button['state'] = 'disabled'
     global comp_score
     global num_turns
     for i in range(5):
@@ -101,6 +109,9 @@ def comp_ai_turn():
             comp_roll.config(text=0)
             num_turns -= 1
             check_finish()
+            play_button['state'] = 'normal'
+            reset_button['state'] = 'normal'
+
             return
         else:
             # comp_roll.config(text=roll)
@@ -114,10 +125,14 @@ def comp_ai_turn():
             if comp_score >= 21:
 
                 comp_ai_holder()
-
+                play_button['state'] = 'normal'
+                reset_button['state'] = 'normal'
                 return
 
     comp_ai_holder()
+    play_button['state'] = 'normal'
+    reset_button['state'] = 'normal'
+
 
 def comp_ai_holder():
     global comp_holdings
