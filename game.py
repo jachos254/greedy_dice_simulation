@@ -42,14 +42,17 @@ def reset():
     hold_button['state'] = 'normal'
     play_button['state'] = 'normal'
 
+    comp_win.config(text='')
+    player_win.config(text='')
+
 
 def check_finish():
     trns_left_label.config(text=num_turns)
     if num_turns == 0:
         if comp_holdings > holdings:
-            print('ai won')
+            comp_win.config(text='Winner!')
         else:
-            print('you won')
+            player_win.config(text='Winner!')
 
 def roll():
     play_button['state'] = 'disabled'
@@ -167,6 +170,8 @@ comp_turn.config(text=0)
 comp_hold = Label()
 comp_hold.grid(row=1, column=4)
 comp_hold.config(text=0)
+comp_win = Label()
+comp_win.grid(row=1, column=6)
 
 player = Label(text='Pl4yer').grid(row=2, column=1)
 player_roll = Label()
@@ -178,11 +183,14 @@ player_turn.config(text=0)
 player_hold = Label()
 player_hold.grid(row=2, column=4)
 player_hold.config(text=0)
+player_win = Label()
+player_win.grid(row=2, column=6)
 
 play_button = Button(text='Roll', bg='green', command=roll)
 play_button.grid(row=3, column=2)
 hold_button = Button(text='Hold', bg='red', command=holder)
 hold_button.grid(row=3, column=4)
+hold_button['state'] = 'disabled'
 reset_button = Button(text='Reset', command=reset)
 reset_button.grid(row=4, column=6)
 
