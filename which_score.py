@@ -1,4 +1,4 @@
-from main import roll_d6, sum
+from functions import roll_d6, sum
 
 
 

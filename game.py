@@ -1,9 +1,9 @@
-from main import roll_d6
+from functions import roll_d6
 from tkinter import *
 import time
 
 window = Tk()
-window.title('Greedy Pig')
+window.title('GR3EdY_P1G')
 window.geometry('420x420')
 # window.resizable(False, False)
 
@@ -51,8 +51,13 @@ def check_finish():
     if num_turns == 0:
         if comp_holdings > holdings:
             comp_win.config(text='Winner!')
+            play_button['state'] = 'disabled'
+            hold_button['state'] = 'disabled'
         else:
             player_win.config(text='Winner!')
+            play_button['state'] = 'disabled'
+            hold_button['state'] = 'disabled'
+
 
 def roll():
     play_button['state'] = 'disabled'
@@ -70,6 +75,7 @@ def roll():
 
         comp_ai_turn()
         player_roll.config(text=0)
+        time.sleep(1)
         return
     player_score += roll
     player_turn.config(text=player_score)
@@ -79,6 +85,7 @@ def roll():
 
 def holder():
     hold_button['state'] = 'disabled'
+    play_button['state'] = 'disabled'
     global holdings
     global player_score
     player_roll.config(text=0)
@@ -133,8 +140,7 @@ def comp_ai_turn():
                 return
 
     comp_ai_holder()
-    play_button['state'] = 'normal'
-    reset_button['state'] = 'normal'
+
 
 
 def comp_ai_holder():
@@ -149,6 +155,8 @@ def comp_ai_holder():
     comp_roll.config(text=0)
     window.update()
     num_turns -= 1
+    play_button['state'] = 'normal'
+    reset_button['state'] = 'normal'
     check_finish()
 
 curr_roll = Label(text='Rolled').grid(row=0, column=2)
@@ -194,5 +202,6 @@ hold_button['state'] = 'disabled'
 reset_button = Button(text='Reset', command=reset)
 reset_button.grid(row=4, column=6)
 
+window.iconbitmap('pig_icon.ico')
 window.mainloop()
 
