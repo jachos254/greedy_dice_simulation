@@ -2,10 +2,17 @@ from functions import roll_d6
 from tkinter import *
 import time
 
+grey = '#d7d7d7'
+white = '#353534'
+green = '#b2d7b6'
+red = '#f36168'
+
 window = Tk()
-window.title('GR3EdY_P1G')
-window.geometry('420x420')
+window.config(bg=grey)
+window.title('Greedy_Pig')
+window.geometry('586x192')
 # window.resizable(False, False)
+
 
 
 
@@ -13,7 +20,7 @@ player_score = 0
 holdings = 0
 comp_score = 0
 comp_holdings = 0
-num_turns = 10
+num_turns = 1
 
 def reset():
     global player_score
@@ -159,49 +166,54 @@ def comp_ai_holder():
     reset_button['state'] = 'normal'
     check_finish()
 
-curr_roll = Label(text='Rolled').grid(row=0, column=2)
-turn = Label(text='Turn').grid(row=0, column=3)
-hold = Label(text='Holdings').grid(row=0, column=4)
-turns_left = Label(text='Turns Left').grid(row=0, column=5)
+
+font = ('Sans Serif',18)
+
+curr_roll = Label(text='Rolled', bg=grey, fg=white, font=font, relief='groove', width=6).grid(row=0, column=2)
+turn = Label(text='Turn', bg=grey, fg=white, font=font, relief='groove', width=6).grid(row=0, column=3)
+hold = Label(text='Holdings', bg=grey, fg=white, font=font, relief='groove', width=7).grid(row=0, column=4)
+turns_left = Label(text='Turns Left', bg=grey, fg=white, font=font, relief='groove', width=8).grid(row=0, column=5)
 
 trns_left_label = Label()
 trns_left_label.grid(row=1, column=5)
-trns_left_label.config(text=num_turns)
+trns_left_label.config(text=num_turns, bg=grey, fg=white, font=font, relief='sunken', width=8)
 
-comp = Label(text='AI').grid(row=1, column=1)
+comp = Label(text='AI', bg=grey, fg=white, font=font, relief='groove', width=6).grid(row=1, column=1)
 comp_roll = Label()
 comp_roll.grid(row=1, column=2)
-comp_roll.config(text=0)
+comp_roll.config(text=0, bg=grey, fg=white, font=font, relief='sunken', width=6)
 comp_turn = Label()
 comp_turn.grid(row=1, column=3)
-comp_turn.config(text=0)
+comp_turn.config(text=0, bg=grey, fg=white, font=font, relief='sunken', width=6)
 comp_hold = Label()
 comp_hold.grid(row=1, column=4)
-comp_hold.config(text=0)
+comp_hold.config(text=0, bg=grey, fg=white, font=font, relief='sunken', width=7)
 comp_win = Label()
+comp_win.config(font=font, bg=grey, fg=white)
 comp_win.grid(row=1, column=6)
 
-player = Label(text='Pl4yer').grid(row=2, column=1)
+player = Label(text='Pl4yer', bg=grey, fg=white, font=font, relief='groove', width=6).grid(row=2, column=1)
 player_roll = Label()
 player_roll.grid(row=2, column=2)
-player_roll.config(text=0)
+player_roll.config(text=0, bg=grey, fg=white, font=font, relief='sunken', width=6)
 player_turn = Label()
 player_turn.grid(row=2, column=3)
-player_turn.config(text=0)
+player_turn.config(text=0, bg=grey, fg=white, font=font, relief='sunken', width=6)
 player_hold = Label()
 player_hold.grid(row=2, column=4)
-player_hold.config(text=0)
+player_hold.config(text=0, bg=grey, fg=white, font=font, relief='sunken', width=7)
 player_win = Label()
+player_win.config(font=font, bg=grey, fg=white)
 player_win.grid(row=2, column=6)
 
-play_button = Button(text='Roll', bg='green', command=roll)
+play_button = Button(text='Roll', bg=green, fg=white, font = font, command=roll)
 play_button.grid(row=3, column=2)
-hold_button = Button(text='Hold', bg='red', command=holder)
+hold_button = Button(text='Hold', bg=red, fg=white, font=font, command=holder)
 hold_button.grid(row=3, column=4)
 hold_button['state'] = 'disabled'
-reset_button = Button(text='Reset', command=reset)
+reset_button = Button(text='Reset', bg=grey, fg=white, font=font, command=reset, width=6)
 reset_button.grid(row=4, column=6)
 
-window.iconbitmap('pig_icon.ico')
+window.iconbitmap('pig_square.ico')
 window.mainloop()
 
