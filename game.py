@@ -2,10 +2,10 @@ from functions import roll_d6
 from tkinter import *
 import time
 
-grey = '#d7d7d7'
-white = '#353534'
-green = '#b2d7b6'
-red = '#f36168'
+grey = '#74b9ff'
+white = '#2d3436'
+green = '#00b894'
+red = '#d63031'
 
 window = Tk()
 window.config(bg=grey)
@@ -20,7 +20,7 @@ player_score = 0
 holdings = 0
 comp_score = 0
 comp_holdings = 0
-num_turns = 1
+num_turns = 10
 
 def reset():
     global player_score
@@ -46,7 +46,7 @@ def reset():
     player_turn.config(text=0)
     player_hold.config(text=0)
 
-    hold_button['state'] = 'normal'
+    hold_button['state'] = 'disabled'
     play_button['state'] = 'normal'
 
     comp_win.config(text='')
@@ -125,9 +125,10 @@ def comp_ai_turn():
             window.update()
             comp_roll.config(text=0)
             num_turns -= 1
-            check_finish()
             play_button['state'] = 'normal'
             reset_button['state'] = 'normal'
+            check_finish()
+
 
             return
         else:
@@ -214,6 +215,6 @@ hold_button['state'] = 'disabled'
 reset_button = Button(text='Reset', bg=grey, fg=white, font=font, command=reset, width=6)
 reset_button.grid(row=4, column=6)
 
-window.iconbitmap('pig_square.ico')
+window.iconbitmap('nose.ico')
 window.mainloop()
 
