@@ -215,6 +215,6 @@ hold_button['state'] = 'disabled'
 reset_button = Button(text='Reset', bg=grey, fg=white, font=font, command=reset, width=6)
 reset_button.grid(row=4, column=6)
 
-window.iconbitmap('nose.ico')
-window.mainloop()
+# window.iconbitmap('nose.ico')
+# window.mainloop()
 
